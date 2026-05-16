@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sacrifício, Dízimo e o Coração — Pr. João Alves</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cor-destaque: #1a0e00;
+  --cor-texto: #1c1108;
+  --cor-secundario: #3a2c14;
+  --fundo: #fdf8f0;
+  --fundo-card: rgba(180,140,60,0.07);
+  --fundo-card-hover: rgba(180,140,60,0.14);
+  --borda: rgba(120,80,20,0.22);
+  --borda-forte: rgba(120,80,20,0.55);
+  --dourado: #7a5010;
+  --dourado-claro: #a07020;
+  --creme: #f5edd8;
+  --nav-bg: rgba(253,248,240,0.96);
+  --sombra: 0 4px 24px rgba(100,60,0,0.10);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'EB Garamond', serif;
+  font-size: clamp(1.28rem, 2.8vw, 1.5rem);
+  font-weight: 500;
+  color: var(--cor-texto);
+  background: var(--fundo);
+  line-height: 1.82;
+}
+
+/* BARRA DE PROGRESSO */
+#progressBar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--dourado), var(--dourado-claro));
+  z-index: 9999;
+  transition: width 0.1s linear;
+}
+
+/* NAVEGAÇÃO */
+#mainNav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: var(--nav-bg);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--borda);
+  box-shadow: 0 2px 12px rgba(100,60,0,0.07);
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  min-height: 52px;
+}
+#mainNav::-webkit-scrollbar { display: none; }
+
+.nav-btn {
+  font-family: 'Cinzel', serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #3a2c14;
+  background: none;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  padding: 0.45rem 0.9rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  letter-spacing: 0.03em;
+}
+.nav-btn:hover { color: var(--dourado); border-color: var(--borda); }
+.nav-btn.ativo { color: var(--cor-destaque); border-color: var(--dourado); background: rgba(122,80,16,0.08); }
+.nav-btn.indice-btn {
+  color: #fff;
+  background: var(--dourado);
+  border-color: var(--dourado);
+}
+.nav-btn.indice-btn:hover { background: var(--dourado-claro); border-color: var(--dourado-claro); }
+
+/* HERO */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 2rem 3rem;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(180,130,30,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(160,112,32,0.06) 0%, transparent 50%),
+    linear-gradient(160deg, #fdf8f0 0%, #f5edd8 50%, #ede0c4 100%);
+  position: relative;
+}
+
+.hero-simbolo {
+  font-size: clamp(3.5rem, 8vw, 5.5rem);
+  display: block;
+  animation: flutuar 3.5s ease-in-out infinite;
+  margin-bottom: 1.5rem;
+}
+@keyframes flutuar {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+
+.hero-categoria {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(0.7rem, 1.5vw, 0.88rem);
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  color: var(--dourado);
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+}
+
+.hero-titulo {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: clamp(1.8rem, 5vw, 3.5rem);
+  font-weight: 700;
+  color: var(--cor-destaque);
+  line-height: 1.25;
+  max-width: 820px;
+  margin-bottom: 1.2rem;
+}
+
+.hero-subtitulo {
+  font-family: 'EB Garamond', serif;
+  font-style: italic;
+  font-size: clamp(1.1rem, 2.2vw, 1.4rem);
+  color: var(--cor-secundario);
+  max-width: 640px;
+  margin-bottom: 1.6rem;
+  font-weight: 500;
+}
+
+.hero-autor {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(0.85rem, 1.6vw, 1rem);
+  font-weight: 600;
+  color: var(--dourado);
+  letter-spacing: 0.08em;
+}
+
+.hero-seta {
+  position: absolute;
+  bottom: 2.2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.5rem;
+  color: var(--dourado);
+  animation: seta 2s ease-in-out infinite;
+  cursor: pointer;
+}
+@keyframes seta {
+  0%, 100% { opacity: 0.4; transform: translateX(-50%) scaleY(1); }
+  50% { opacity: 1; transform: translateX(-50%) scaleY(1.15); }
+}
+
+/* ÍNDICE */
+#indice {
+  padding: 4rem 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.indice-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.indice-btn {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem 1.2rem;
+  background: var(--fundo-card);
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+  font-family: 'Cinzel', serif;
+  color: var(--cor-destaque);
+  font-size: 0.85rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+.indice-btn:hover {
+  border-color: var(--dourado);
+  color: var(--dourado);
+  transform: translateX(4px);
+  background: var(--fundo-card-hover);
+}
+.indice-num {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 1.1rem;
+  color: var(--dourado);
+  min-width: 24px;
+  flex-shrink: 0;
+}
+
+/* SEÇÕES */
+.section {
+  padding: 4rem 2rem;
+  max-width: 860px;
+  margin: 0 auto;
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.section.visivel { opacity: 1; transform: translateY(0); }
+
+.badge {
+  display: inline-block;
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--dourado);
+  border: 1px solid rgba(122,80,16,0.35);
+  border-radius: 20px;
+  padding: 0.3rem 1rem;
+  margin-bottom: 1.2rem;
+}
+
+.section-titulo {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: clamp(1.5rem, 3.2vw, 2.2rem);
+  font-weight: 700;
+  color: #1a0e00;
+  line-height: 1.3;
+  margin-bottom: 0.6rem;
+}
+
+.section-linha {
+  height: 2px;
+  background: linear-gradient(90deg, var(--dourado), transparent);
+  border-radius: 2px;
+  margin-bottom: 2rem;
+  max-width: 160px;
+}
+
+/* CITAÇÃO */
+.citacao {
+  background: #ffe066;
+  border-left: 4px solid #c8920a;
+  border-radius: 0 8px 8px 0;
+  padding: 1.4rem 1.6rem 1.4rem 2.2rem;
+  margin: 1.8rem 0;
+  position: relative;
+}
+.citacao::before {
+  content: '\201C';
+  font-family: 'EB Garamond', serif;
+  font-size: 5rem;
+  color: #7a5010;
+  opacity: 0.4;
+  position: absolute;
+  top: -0.8rem;
+  left: 0.5rem;
+  line-height: 1;
+}
+.citacao p {
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.32rem;
+  color: #1a0e00;
+  line-height: 1.72;
+  margin-bottom: 0.6rem;
+}
+.citacao-ref {
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #6b3f00;
+}
+
+/* DESTAQUE BÍBLICO */
+.destaque-biblico {
+  background: #ffe066;
+  border: 1px solid rgba(160,112,32,0.35);
+  border-left: 4px solid #c8920a;
+  border-radius: 0 12px 12px 0;
+  padding: 1.6rem 2rem;
+  margin: 2rem auto;
+  max-width: 700px;
+  text-align: center;
+}
+.destaque-biblico p {
+  font-family: 'Cinzel Decorative', serif;
+  font-style: italic;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: #1a0e00;
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+  font-weight: 400;
+}
+.destaque-biblico .ref {
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: #6b3f00;
+}
+
+/* CARDS GRID */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  margin: 1.8rem 0;
+}
+.card {
+  background: var(--fundo-card);
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+  padding: 1.4rem 1.3rem;
+  transition: all 0.25s ease;
+}
+.card:hover {
+  border-color: var(--dourado);
+  transform: translateY(-3px);
+  box-shadow: var(--sombra);
+  background: var(--fundo-card-hover);
+}
+.card-icone { font-size: 1.8rem; margin-bottom: 0.6rem; display: block; }
+.card h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1a0e00;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.03em;
+}
+.card p { font-size: 1.05em; color: #1a0e00; font-weight: 500; line-height: 1.7; }
+
+/* PASSOS */
+.passos { margin: 1.8rem 0; }
+.passo {
+  display: flex;
+  gap: 1.2rem;
+  margin-bottom: 1.6rem;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.passo.visivel { opacity: 1; transform: translateX(0); }
+.passo-num {
+  width: 2.4rem;
+  height: 2.4rem;
+  min-width: 2.4rem;
+  border-radius: 50%;
+  border: 2px solid var(--dourado);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--dourado);
+  margin-top: 0.15rem;
+}
+.passo-conteudo h4 {
+  font-family: 'Cinzel', serif;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #1a0e00;
+  margin-bottom: 0.3rem;
+}
+.passo-conteudo p { color: #1a0e00; font-weight: 500; font-size: 1.02em; line-height: 1.75; }
+
+/* IMPLICAÇÕES */
+.implicacoes { margin: 1.8rem 0; display: flex; flex-direction: column; gap: 0.9rem; }
+.impl-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem 1.2rem;
+  background: var(--fundo-card);
+  border-left: 2px solid var(--dourado);
+  border-radius: 0 8px 8px 0;
+}
+.impl-ponto {
+  width: 10px;
+  height: 10px;
+  min-width: 10px;
+  border-radius: 50%;
+  background: var(--dourado);
+  box-shadow: 0 0 8px rgba(160,112,32,0.4);
+  margin-top: 0.6rem;
+}
+.impl-conteudo h4 {
+  font-family: 'Cinzel', serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #1a0e00;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
+}
+.impl-conteudo p { color: #1a0e00; font-weight: 500; font-size: 1.02em; line-height: 1.72; }
+
+/* ACORDEÃO */
+.acordeao { margin: 1.8rem 0; display: flex; flex-direction: column; gap: 0.6rem; }
+.acord-item { border: 1px solid var(--borda); border-radius: 8px; overflow: hidden; }
+.acord-cabecalho {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.3rem;
+  background: var(--fundo-card);
+  cursor: pointer;
+  border: none;
+  text-align: left;
+  transition: background 0.2s;
+}
+.acord-cabecalho:hover { background: var(--fundo-card-hover); }
+.acord-titulo {
+  font-family: 'Cinzel', serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #1a0e00;
+  letter-spacing: 0.03em;
+}
+.acord-seta {
+  font-size: 0.9rem;
+  color: var(--dourado);
+  transition: transform 0.3s ease;
+}
+.acord-item.aberto .acord-seta { transform: rotate(180deg); }
+.acord-corpo {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+.acord-item.aberto .acord-corpo { max-height: 600px; }
+.acord-interno {
+  padding: 1.1rem 1.3rem 1.3rem;
+  color: #1a0e00;
+  font-weight: 500;
+  font-size: 1.05em;
+  line-height: 1.82;
+}
+
+/* TAGS DE REFERÊNCIA */
+.tags-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1.4rem 0; }
+.tag-ref {
+  font-family: 'Cinzel', serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #1a0e00;
+  border: 1px solid var(--borda-forte);
+  background: var(--fundo-card);
+  padding: 0.3rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+.tag-ref:hover { border-color: var(--dourado); color: var(--dourado); }
+.tag-ref.flash { background: rgba(122,80,16,0.15); border-color: var(--dourado); }
+
+/* TOOLTIP */
+#tooltip {
+  position: fixed;
+  z-index: 9998;
+  background: #1a0e00;
+  color: #f5edd8;
+  font-family: 'EB Garamond', serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1.6;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  max-width: 300px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  border: 1px solid rgba(122,80,16,0.5);
+}
+#tooltip.visivel { opacity: 1; }
+
+/* VOCABULÁRIO */
+.vocab-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.8rem;
+  margin: 1.8rem 0;
+}
+.vocab-item {
+  background: var(--fundo-card);
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+  padding: 1rem 1.1rem;
+  transition: all 0.22s ease;
+}
+.vocab-item:hover { border-color: var(--dourado); transform: translateY(-2px); }
+.vocab-palavra {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 1.05rem;
+  color: var(--dourado);
+  display: block;
+  margin-bottom: 0.15rem;
+}
+.vocab-transliteracao {
+  font-family: 'Cinzel', serif;
+  font-size: 0.75rem;
+  color: var(--dourado-claro);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+.vocab-def { color: #1a0e00; font-weight: 500; font-size: 0.95em; line-height: 1.65; }
+
+/* TABELA */
+.tabela-wrap { overflow-x: auto; border-radius: 10px; border: 1px solid var(--borda); margin: 1.8rem 0; }
+table { width: 100%; border-collapse: collapse; }
+thead { background: rgba(122,80,16,0.12); }
+th {
+  font-family: 'Cinzel', serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--dourado);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.9rem 1rem;
+  text-align: left;
+}
+td {
+  color: #1a0e00;
+  font-weight: 500;
+  font-size: 1em;
+  padding: 0.85rem 1rem;
+  border-top: 1px solid var(--borda);
+  vertical-align: top;
+}
+tr:hover td { background: var(--fundo-card); }
+
+/* DIVISOR */
+.divisor {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+.divisor::before, .divisor::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--borda);
+}
+.divisor-glifo { color: var(--dourado); font-size: 0.9rem; }
+
+/* RODAPÉ */
+footer {
+  background: var(--creme);
+  border-top: 1px solid var(--borda);
+  padding: 3rem 2rem;
+  text-align: center;
+}
+.footer-simbolo { font-size: 2rem; margin-bottom: 0.8rem; display: block; }
+.footer-nome {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 1.1rem;
+  color: var(--cor-destaque);
+  margin-bottom: 0.4rem;
+}
+.footer-local {
+  font-family: 'Cinzel', serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--dourado);
+  letter-spacing: 0.1em;
+  margin-bottom: 0.6rem;
+}
+.footer-link a {
+  font-family: 'Cinzel', serif;
+  font-size: 0.82rem;
+  color: var(--dourado);
+  text-decoration: none;
+}
+.footer-link a:hover { text-decoration: underline; }
+.footer-nota {
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1em;
+  color: #3a2c14;
+  margin-top: 1.2rem;
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* BOTÃO TOPO */
+#backTop {
+  position: fixed;
+  bottom: 1.8rem;
+  right: 1.8rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--dourado);
+  color: #fff;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s, transform 0.2s;
+  box-shadow: 0 4px 16px rgba(122,80,16,0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+#backTop.visivel { opacity: 1; pointer-events: auto; }
+#backTop:hover { transform: scale(1.1); }
+
+/* TEXTO GERAL */
+p { margin-bottom: 1rem; }
+p:last-child { margin-bottom: 0; }
+
+.section p {
+  color: #1a0e00;
+  font-weight: 500;
+  line-height: 1.82;
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  .section { padding: 3rem 1.2rem; }
+  #indice { padding: 3rem 1.2rem; }
+  .hero-titulo { font-size: clamp(1.6rem, 7vw, 2.5rem); }
+  .indice-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div id="progressBar"></div>
+<div id="tooltip"></div>
+
+<!-- NAVEGAÇÃO -->
+<nav id="mainNav">
+  <button class="nav-btn indice-btn" onclick="irPara('indice')">⊞ Índice</button>
+  <button class="nav-btn" data-nav="1" onclick="irPara('contexto')">Contexto</button>
+  <button class="nav-btn" data-nav="2" onclick="irPara('sacrificios')">Sacrifícios</button>
+  <button class="nav-btn" data-nav="3" onclick="irPara('dizimo')">Dízimo</button>
+  <button class="nav-btn" data-nav="4" onclick="irPara('analogia')">Analogia</button>
+  <button class="nav-btn" data-nav="5" onclick="irPara('coracao')">O Coração</button>
+  <button class="nav-btn" data-nav="6" onclick="irPara('nova-alianca')">Nova Aliança</button>
+  <button class="nav-btn" data-nav="7" onclick="irPara('implicacoes')">Implicações</button>
+  <button class="nav-btn" data-nav="8" onclick="irPara('texto-final')">Texto Final</button>
+  <button class="nav-btn" data-nav="9" onclick="irPara('passagens')">Passagens</button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <span class="hero-simbolo">🕊️</span>
+  <div class="hero-categoria">Teologia Bíblica · Lei & Graça · Generosidade</div>
+  <h1 class="hero-titulo">Sacrifício, Dízimo e o Coração</h1>
+  <p class="hero-subtitulo">Como a pedagogia do Antigo Testamento aponta para Cristo e para a liberdade da Nova Aliança</p>
+  <div class="hero-autor">Pr. João Alves · Vila Velha-ES</div>
+  <div class="hero-seta" onclick="irPara('indice')">▼</div>
+</section>
+
+<!-- ÍNDICE -->
+<section id="indice">
+  <div class="badge">Navegação</div>
+  <h2 class="section-titulo">Índice do Estudo</h2>
+  <div class="section-linha"></div>
+  <div class="indice-grid">
+    <button class="indice-btn" onclick="irPara('contexto')"><span class="indice-num">I</span>Contexto Histórico-Teológico</button>
+    <button class="indice-btn" onclick="irPara('sacrificios')"><span class="indice-num">II</span>Os Sacrifícios e Sua Cessação em Cristo</button>
+    <button class="indice-btn" onclick="irPara('dizimo')"><span class="indice-num">III</span>O Dízimo: Exegese e Tradições</button>
+    <button class="indice-btn" onclick="irPara('analogia')"><span class="indice-num">IV</span>A Analogia: Sacrifício e Dízimo</button>
+    <button class="indice-btn" onclick="irPara('coracao')"><span class="indice-num">V</span>Amor a Deus vs. Amor ao Dinheiro</button>
+    <button class="indice-btn" onclick="irPara('nova-alianca')"><span class="indice-num">VI</span>A Nova Aliança e a Oferta Voluntária</button>
+    <button class="indice-btn" onclick="irPara('implicacoes')"><span class="indice-num">VII</span>Implicações Pastorais e Práticas</button>
+    <button class="indice-btn" onclick="irPara('texto-final')"><span class="indice-num">VIII</span>Síntese — Texto de Abertura</button>
+    <button class="indice-btn" onclick="irPara('passagens')"><span class="indice-num">IX</span>Passagens para Estudo Aprofundado</button>
+  </div>
+</section>
+
+<div class="divisor"><span class="divisor-glifo">✦</span></div>
+
+<!-- SEÇÃO I: CONTEXTO -->
+<section class="section" id="contexto" data-nav="1">
+  <div class="badge">Seção I</div>
+  <h2 class="section-titulo">Contexto Histórico-Teológico</h2>
+  <div class="section-linha"></div>
+
+  <p>A tese examinada neste estudo parte de uma premissa histórica bem fundamentada: Jesus viveu, ministrou e morreu como judeu, dentro do sistema do Antigo Testamento, portanto esteve sob a Lei mosaica. A partir disso, quando Ele fala sobre dízimos em Mateus 23:23, refere-se à Lei — e hoje o que prevalece é a oferta voluntária.</p>
+
+  <div class="citacao">
+    <p>Há continuidade e descontinuidade entre Antigo e Novo Testamento. A Lei mosaica foi instituída no Sinai; Cristo é o cumprimento da Lei — e inaugurou uma Nova Aliança.</p>
+    <span class="citacao-ref">Lc 22:20; Hb 8:6–13; Mt 5:17–20</span>
+  </div>
+
+  <div class="cards-grid">
+    <div class="card">
+      <span class="card-icone">📜</span>
+      <h3>Premissa Histórica</h3>
+      <p>Jesus nasceu e ministrou como judeu; participou da sinagoga, citou as Escrituras hebraicas e observou práticas da Lei mosaica em seu tempo.</p>
+    </div>
+    <div class="card">
+      <span class="card-icone">⚖️</span>
+      <h3>Interpretação Exegética</h3>
+      <p>Passagens como Mateus 23:23 tratam do cumprimento/observância da Lei praticada pelos judeus — incluindo o dízimo como obrigação do sistema antigo.</p>
+    </div>
+    <div class="card">
+      <span class="card-icone">🕊️</span>
+      <h3>Conclusão Prática</h3>
+      <p>Como a Nova Aliança substitui e aperfeiçoa a antiga, o mandamento legal do dízimo não se aplica; o padrão do NT é a oferta voluntária e generosa.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divisor"><span class="divisor-glifo">✦</span></div>
+
+<!-- SEÇÃO II: SACRIFÍCIOS -->
+<section class="section" id="sacrificios" data-nav="2">
+  <div class="badge">Seção II</div>
+  <h2 class="section-titulo">Os Sacrifícios e Sua Cessação em Cristo</h2>
+  <div class="section-linha"></div>
+
+  <p>Os sacrifícios de animais moldaram a vida religiosa de Israel muito antes da Lei mosaica. Caim e Abel (Gn 4), Noé, Abraão — todos expressaram adoração, expiação e aliança por meio de ofertas. A Lei do Sinai institucionalizou esse sistema, conferindo-lhe funções cultuais, sociais e sacerdotais.</p>
+
+  <div class="passos" id="passos-sac">
+    <div class="passo">
+      <div class="passo-num">1</div>
+      <div class="passo-conteudo">
+        <h4>Função Pedagógica</h4>
+        <p>Os sacrifícios repetidos ensinavam a gravidade do pecado e a necessidade de expiação. Cada holocausto apontava para um sacrifício definitivo que ainda estava por vir (Lv; Êx).</p>
+      </div>
+    </div>
+    <div class="passo">
+      <div class="passo-num">2</div>
+      <div class="passo-conteudo">
+        <h4>Sombras e Cumprimento</h4>
+        <p>Hebreus interpreta os sacrifícios do Templo como sombras que apontavam para Cristo. "Ele ofereceu uma só oblação pelos pecados" — suficiente para sempre (Hb 9:13–14; 10:10–14).</p>
+      </div>
+    </div>
+    <div class="passo">
+      <div class="passo-num">3</div>
+      <div class="passo-conteudo">
+        <h4>O Cordeiro Definitivo</h4>
+        <p>João chama Jesus de "Cordeiro de Deus que tira o pecado do mundo" (Jo 1:29). Na cruz, Ele declara: "Está consumado" — a linguagem conclui o propósito tipológico de todos os sacrifícios.</p>
+      </div>
+    </div>
+    <div class="passo">
+      <div class="passo-num">4</div>
+      <div class="passo-conteudo">
+        <h4>Cessação Teológica</h4>
+        <p>A abolição do sistema sacrificial não é desprezo pelo passado, mas cumprimento de seu propósito pedagógico. O sacrifício perfeito foi dado em Jesus — o ritual repetitivo foi encerrado.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="destaque-biblico">
+    <p>"Não há mais nenhum sacrifício pelos pecados; Cristo, pelo mesmo Espírito eterno, ofereceu-se a si mesmo sem mácula a Deus."</p>
+    <span class="ref">Hebreus 9:14; 10:10–14</span>
+  </div>
+</section>
+
+<div class="divisor"><span class="divisor-glifo">✦</span></div>
+
+<!-- SEÇÃO III: DÍZIMO -->
+<section class="section" id="dizimo" data-nav="3">
+  <div class="badge">Seção III</div>
+  <h2 class="section-titulo">O Dízimo: Exegese e Tradições</h2>
+  <div class="section-linha"></div>
+
+  <p>Assim como os sacrifícios, o ato de consagrar parte dos bens aparece antes da Lei mosaica. O proto-dízimo de Abraão a Melquisedeque (Gn 14:18–20) é anterior ao Sinai. A Lei regulamentou e institucionalizou essa prática para fins precisos:</p>
+
+  <div class="tabela-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Finalidade</th>
+          <th>Base Bíblica</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Sustento do ministério levítico</td>
+          <td>Nm 18:21–24</td>
+        </tr>
+        <tr>
+          <td>Manutenção das festas religiosas</td>
+          <td>Dt 14:22–27</td>
+        </tr>
+        <tr>
+          <td>Assistência aos pobres e estrangeiros</td>
+          <td>Dt 14:28–29; Dt 26:12–13</td>
+        </tr>
+        <tr>
+          <td>Cultivo do desapego e confiança em Deus</td>
+          <td>Lv 25; Dt 15</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="font-family:'Cinzel',serif;font-size:1rem;font-weight:600;color:#1a0e00;margin-bottom:1rem;letter-spacing:0.03em;">Mateus 23:23 — Exegese Cuidadosa</h3>
+
+  <div class="citacao">
+    <p>Jesus repreende os fariseus por enfatizarem práticas externas — dízimos de ervas — enquanto negligenciam o que é mais importante na Lei: justiça, misericórdia e fé. Porém, afirma que deveriam praticar também o primeiro sem omitir o segundo.</p>
+    <span class="citacao-ref">Mt 23:23 — cf. Lc 11:42</span>
+  </div>
+
+  <p>Jesus não anula o dízimo aqui. Ele critica a hipocrisia e afirma que a observância ritual não deve ser omitida enquanto se exige justiça moral — pois estava falando à audiência judaica, sob a Lei ainda vigente em Seu ministério terreno.</p>
+
+  <h3 style="font-family:'Cinzel',serif;font-size:1rem;font-weight:600;color:#1a0e00;margin:1.6rem 0 0.8rem;letter-spacing:0.03em;">Posições das Grandes Tradições</h3>
+
+  <div class="acordeao">
+    <div class="acord-item">
+      <button class="acord-cabecalho" onclick="toggleAcord(this)">
+        <span class="acord-titulo">⛪ Tradição Católica</span>
+        <span class="acord-seta">▾</span>
+      </button>
+      <div class="acord-corpo">
+        <div class="acord-interno">Não define o dízimo bíblico como mandamento universal igual à Lei mosaica. Enfatiza obrigação moral de suportar a Igreja e a caridade. Muitas comunidades encorajam uma porcentagem, mas não como lei canônica universal para leigos.</div>
+      </div>
+    </div>
+    <div class="acord-item">
+      <button class="acord-cabecalho" onclick="toggleAcord(this)">
+        <span class="acord-titulo">☦️ Tradição Ortodoxa</span>
+        <span class="acord-seta">▾</span>
+      </button>
+      <div class="acord-corpo">
+        <div class="acord-interno">Encoraja doação generosa e apoio à Igreja e aos pobres. As práticas variam conforme a comunidade local, sem imposição de percentual fixo como mandamento obrigatório.</div>
+      </div>
+    </div>
+    <div class="acord-item">
+      <button class="acord-cabecalho" onclick="toggleAcord(this)">
+        <span class="acord-titulo">✝️ Tradição Evangélica/Protestante</span>
+        <span class="acord-seta">▾</span>
+      </button>
+      <div class="acord-corpo">
+        <div class="acord-interno">Dividida: alguns defendem o dízimo (10%) como princípio contínuo e saudável; outros enfatizam a oferta voluntária e a liberdade cristã, citando 2 Coríntios 9 e a teologia paulina da graça.</div>
+      </div>
+    </div>
+    <div class="acord-item">
+      <button class="acord-cabecalho" onclick="toggleAcord(this)">
+        <span class="acord-titulo">📖 Movimentos Reformados</span>
+        <span class="acord-seta">▾</span>
+      </button>
+      <div class="acord-corpo">
+        <div class="acord-interno">Alguns argumentam por maior continuidade da Lei moral e econômica, mantendo uma obrigação estruturada sobre o dízimo. Outros, especialmente batistas e reformados calvinistas, favorecem a oferta voluntária e proporcional.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divisor"><span class="divisor-glifo">✦</span></div>
+
+<!-- SEÇÃO IV: ANALOGIA -->
+<section class="section" id="analogia" data-nav="4">
+  <div class="badge">Seção IV</div>
+  <h2 class="section-titulo">A Analogia: Sacrifício e Dízimo</h2>
+  <div class="section-linha"></div>
+
+  <p>A correlação entre o dízimo e os sacrifícios de animais é poderosa: ambos antecedem a Lei mosaica, ambos foram institucionalizados no Sinai, e ambos serviam a funções cultuais, sociais e pedagógicas dentro do sistema veterotestamentário.</p>
+
+  <div class="cards-grid">
+    <div class="card">
+      <span class="card-icone">🔗</span>
+      <h3>Pré-Legalidade Comum</h3>
+      <p>Sacrifícios (Abel, Noé, Abraão) e dízimos (Gn 14:18–20) aparecem muito antes do Sinai. Ambos são respostas de adoração e aliança que a Lei depois regulamentou.</p>
+    </div>
+    <div class="card">
+      <span class="card-icone">🏛️</span>
+      <h3>Função Cultual Integrada</h3>
+      <p>No AT, dízimo e sacrifício estavam profundamente integrados ao culto do Templo, ao sustento do ministério levítico e à estrutura social de Israel.</p>
+    </div>
+    <div class="card">
+      <span class="card-icone">✨</span>
+      <h3>Pedagogia para Cristo</h3>
+      <p>Ambos funcionavam como "sombras" com propósito didático: os sacrifícios ensinavam sobre expiação e redenção; o dízimo ensinava sobre desapego e dependência de Deus.</p>
+    </div>
+    <div class="card">
+      <span class="card-icone">🔄</span>
+      <h3>Reinterpretação em Cristo</h3>
+      <p>Se o sacrifício cerimonial cessou por ser cumprido em Cristo, é teologicamente coerente reinterpretar o dízimo institucional à luz da Nova Aliança.</p>
+    </div>
+  </div>
+
+  <h3 style="font-family:'Cinzel',serif;font-size:1rem;font-weight:600;color:#1a0e00;margin:1.8rem 0 0.8rem;letter-spacing:0.03em;">Limites da Analogia — Distinções Importantes</h3>
+
+  <div class="implicacoes">
+    <div class="impl-item">
+      <div class="impl-ponto"></div>
+      <div class="impl-conteudo">
+        <h4>Cessação Explícita vs. Implícita</h4>
+        <p>Hebreus torna explícita a cessação dos sacrifícios cerimoniais. O NT não declara com a mesma clareza a "extinção" do dízimo legal — apenas desloca o foco para a generosidade motivada pela graça.</p>
+      </div>
+    </div>
+    <div class="impl-item">
+      <div class="impl-ponto"></div>
+      <div class="impl-conteudo">
+        <h4>Função Social Permanente</h4>
+        <p>Diferente dos sacrifícios (tipológicos e expiatórios), o dízimo também tinha funções administrativas e sociais — cuidado dos pobres e sustento dos ministros — que continuam sendo necessidades reais na igreja.</p>
+      </div>
+    </div>
+    <div class="impl-item">
+      <div class="impl-ponto"></div>
+      <div class="impl-conteudo">
+        <h4>Hebreus e o Uso Tipológico</h4>
+        <p>Hebreus usa o dízimo de Abraão (Gn 14) para argumentar sobre o sacerdócio de Cristo (Hb 7:1–10) — tratando-o teologicamente, mas sem estabelecer uma lei de 10% para a igreja cristã.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divisor"><span class="divisor-glifo">✦</span></div>
+
+<!-- SEÇÃO V: O CORAÇÃO -->
+<section class="section" id="coracao" data-nav="5">
+  <div class="badge">Seção V</div>
+  <h2 class="section-titulo">Amor a Deus vs. Amor ao Dinheiro</h2>
+  <div class="section-linha"></div>
+
+  <p>A Escritura coloca o amor a Deus e o amor ao dinheiro (Mamom) em oposição radical. Tanto os sacrifícios quanto os dízimos, como práticas, visavam reordenar o coração humano — ensinar desapego, confiança e justiça. Quando transformadas em meras obrigações externas, porém, essas práticas correm o risco de mascarar a verdadeira idolatria.</p>
+
+  <div class="destaque-biblico">
+    <p>"Ninguém pode servir a dois senhores... não podeis servir a Deus e a Mamom."</p>
+    <span class="ref">Mateus 6:24</span>
+  </div>
+
+  <div class="vocab-grid">
+    <div class="vocab-item">
+      <span class="vocab-palavra">Mamom</span>
+      <span class="vocab-transliteracao">māmōn (aramaico)</span>
+      <p class="vocab-def">Dinheiro ou riqueza personificados como um senhor rival a Deus, símbolo de idolatria econômica.</p>
+    </div>
+    <div class="vocab-item">
+      <span class="vocab-palavra">Agápē</span>
+      <span class="vocab-transliteracao">ἀγάπη (grego)</span>
+      <p class="vocab-def">Amor incondicional — o tipo de amor que a lei exige para com Deus e o próximo, base de toda a ética cristã.</p>
+    </div>
+    <div class="vocab-item">
+      <span class="vocab-palavra">Pleonexía</span>
+      <span class="vocab-transliteracao">πλεονεξία (grego)</span>
+      <p class="vocab-def">Ganância, cobiça — Paulo a chama de "idolatria" (Cl 3:5), equiparando apego às riquezas ao culto de ídolos.</p>
+    </div>
+    <div class="vocab-item">
+      <span class="vocab-palavra">Hilaron</span>
+      <span class="vocab-transliteracao">ἱλαρόν (grego)</span>
+      <p class="vocab-def">"Alegre" — Paulo usa este termo para descrever o caráter do dar cristão: "Deus ama quem dá com alegria" (2 Cor 9:7).</p>
+    </div>
+  </div>
+
+  <h3 style="font-family:'Cinzel',serif;font-size:1rem;font-weight:600;color:#1a0e00;margin:1.6rem 0 0.8rem;letter-spacing:0.03em;">Quando o Dar Vira Idolatria — e Quando É Devoção</h3>
+
+  <div class="acordeao">
+    <div class="acord-item">
+      <button class="acord-cabecalho" onclick="toggleAcord(this)">
+        <span class="acord-titulo">⚠️ Dar corrompido — sinais de alerta</span>
+        <span class="acord-seta">▾</span>
+      </button>
+      <div class="acord-corpo">
+        <div class="acord-interno">
+          Quando o dízimo ou qualquer contribuição é usado para autopromoção, segurança pessoal, manipulação espiritual ("dar para ser abençoado" como fórmula mágica), ou quando o apego às posses domina as decisões — o dar está corrompido. Exemplos bíblicos: Ananias e Safira (At 5); fariseus em Jesus (Mt 23).
+        </div>
+      </div>
+    </div>
+    <div class="acord-item">
+      <button class="acord-cabecalho" onclick="toggleAcord(this)">
+        <span class="acord-titulo">✅ Dar saudável — expressão de devoção</span>
+        <span class="acord-seta">▾</span>
+      </button>
+      <div class="acord-corpo">
+        <div class="acord-interno">
+          Quando a contribuição sustenta o ministério, cuida dos pobres e é motivada por amor a Cristo e ao próximo, ela é congruente com a ética cristã (At 2:44–45; 1 Tm 5:17–18; 2 Cor 8:1–15). O exemplo da Igreja Macedônia é paradigmático: doaram além de suas posses, por livre iniciativa e alegria.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="citacao">
+    <p>O amor ao dinheiro é raiz de todos os males; e alguns, nessa cobiça, se desviaram da fé e a si mesmos se atormentaram com muitas dores.</p>
+    <span class="citacao-ref">1 Timóteo 6:10</span>
+  </div>
+</section>
+
+<div class="divisor"><span class="divisor-glifo">✦</span></div>
+
+<!-- SEÇÃO VI: NOVA ALIANÇA -->
+<section class="section" id="nova-alianca" data-nav="6">
+  <div class="badge">Seção VI</div>
+  <h2 class="section-titulo">A Nova Aliança e a Oferta Voluntária</h2>
+  <div class="section-linha"></div>
+
+  <p>O Novo Testamento, especialmente as cartas de Paulo, desloca a ênfase da obrigatoriedade legal para a motivação interior. A generosidade requerida da comunidade cristã permanece — mas sob parâmetros fundamentalmente diferentes: voluntariedade, proporcionalidade e alegria.</p>
+
+  <div class="passos" id="passos-nt">
+    <div class="passo">
+      <div class="passo-num">1</div>
+      <div class="passo-conteudo">
+        <h4>Paulo e a Teologia da Graça</h4>
+        <p>Romanos 6–8 e Gálatas 3–4 argumentam que a Lei teve fim como sistema de tutela; a ênfase paulina sobre liberdade cristã e não-obrigatoriedade da observância cerimonial é central para a teologia do dar.</p>
+      </div>
+    </div>
+    <div class="passo">
+      <div class="passo-num">2</div>
+      <div class="passo-conteudo">
+        <h4>2 Coríntios 8–9 — O Paradigma do NT</h4>
+        <p>Paulo exorta ofertas voluntárias, alegres e proporcionais. "Cada um contribua segundo propôs no coração, não com tristeza ou por necessidade; porque Deus ama quem dá com alegria" (2 Cor 9:7). Sem imposição de percentual legal.</p>
+      </div>
+    </div>
+    <div class="passo">
+      <div class="passo-num">3</div>
+      <div class="passo-conteudo">
+        <h4>Igreja Primitiva — Modelo de Comunhão</h4>
+        <p>Atos 2:44–45 e 4:32–37 mostram comunhão de bens e doações generosas na igreja primitiva — mas não um sistema formal de dízimo vinculado à Lei mosaica.</p>
+      </div>
+    </div>
+    <div class="passo">
+      <div class="passo-num">4</div>
+      <div class="passo-conteudo">
+        <h4>Sustento Ministerial — Princípio Permanente</h4>
+        <p>1 Timóteo 5:17–18 e Gálatas 6:6 estabelecem o princípio do sustento aos que ensinam — sem especificar percentual, mas afirmando a responsabilidade da comunidade de prover ao ministério.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="destaque-biblico">
+    <p>"Cada um contribua segundo propôs no coração, não com tristeza ou por necessidade; porque Deus ama quem dá com alegria."</p>
+    <span class="ref">2 Coríntios 9:7</span>
+  </div>
+</section>
+
+<div class="divisor"><span class="divisor-glifo">✦</span></div>
+
+<!-- SEÇÃO VII: IMPLICAÇÕES -->
+<section class="section" id="implicacoes" data-nav="7">
+  <div class="badge">Seção VII</div>
+  <h2 class="section-titulo">Implicações Pastorais e Práticas</h2>
+  <div class="section-linha"></div>
+
+  <p>A conclusão teológica deste estudo gera responsabilidades concretas para a vida da igreja e do crente. O desafio é formar cristãos cujo dar brote do amor a Cristo e ao próximo — não do medo da lei nem da busca por recompensa.</p>
+
+  <div class="implicacoes">
+    <div class="impl-item">
+      <div class="impl-ponto"></div>
+      <div class="impl-conteudo">
+        <h4>Ensino Centrado no Caráter</h4>
+        <p>Priorizar a formação do caráter — generosidade, desapego, justiça — não apenas regras financeiras. O dar cristão deve emergir de uma vida transformada pela graça.</p>
+      </div>
+    </div>
+    <div class="impl-item">
+      <div class="impl-ponto"></div>
+      <div class="impl-conteudo">
+        <h4>Prática Voluntária e Proporcional</h4>
+        <p>Incentivar doação voluntária, proporcional e transparente; oferecer acompanhamento pastoral para membros com dificuldades financeiras, sem pressão ou condenação.</p>
+      </div>
+    </div>
+    <div class="impl-item">
+      <div class="impl-ponto"></div>
+      <div class="impl-conteudo">
+        <h4>Transparência Institucional</h4>
+        <p>Publicar prestação de contas da instituição; separar o sustento ministerial legítimo de pressão espiritual sobre os membros. A transparência é evidência de integridade.</p>
+      </div>
+    </div>
+    <div class="impl-item">
+      <div class="impl-ponto"></div>
+      <div class="impl-conteudo">
+        <h4>Discipulado Econômico</h4>
+        <p>Cultivar práticas espirituais — jejum, oração, simplicidade voluntária — que desloquem a confiança das riquezas para Cristo, formando uma comunidade verdadeiramente desapegada.</p>
+      </div>
+    </div>
+    <div class="impl-item">
+      <div class="impl-ponto"></div>
+      <div class="impl-conteudo">
+        <h4>Rejeitar Manipulação Espiritual</h4>
+        <p>Nenhum sistema que transforme o dar em fetiche legalista ou instrumento de manipulação — "dar para receber bênção" — é fiel ao evangelho. O dar cristão não é troca; é resposta à graça.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="citacao">
+    <p>O objetivo bíblico permanece: formar um povo cujo coração ama a Deus em primeiro lugar — prática expressa em generosidade, justiça e desprendimento das riquezas.</p>
+    <span class="citacao-ref">Mt 22:37–40; 2 Cor 9:6–8</span>
+  </div>
+</section>
+
+<div class="divisor"><span class="divisor-glifo">✦</span></div>
+
+<!-- SEÇÃO VIII: TEXTO FINAL -->
+<section class="section" id="texto-final" data-nav="8">
+  <div class="badge">Seção VIII — Síntese</div>
+  <h2 class="section-titulo">Sacrifício, Dízimo e o Coração</h2>
+  <div class="section-linha"></div>
+  <p style="font-family:'Cinzel',serif;font-size:0.82rem;font-weight:600;color:var(--dourado);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:1.4rem;">Texto de Abertura com Justificativa Bíblica</p>
+
+  <p>No Antigo Testamento, sacrifícios de animais e o sistema de dízimos e ofertas moldaram a vida religiosa e social de Israel. Ambos aparecem em formas pré-mosaicas — Caim e Abel (Gn 4); Abraão e Melquisedeque (Gn 14:18–20) — e foram regulamentados no Sinai para ordenar culto, justiça social e a relação do povo com Deus (Lv, Nm, Dt). Essas práticas não eram meras formalidades: ensinavam realidades espirituais e reordenavam afetos humanos na direção do Senhor.</p>
+
+  <p>Os sacrifícios repetidos ensinavam a gravidade do pecado e a necessidade de expiação; cada oferta apontava para um sacrifício definitivo (Êx; Lv). O Novo Testamento interpreta esses ritos como sombras cujo cumprimento está em Cristo: João chama Jesus de "Cordeiro de Deus" (Jo 1:29) e Hebreus afirma que Cristo ofereceu "uma só oblação pelos pecados" (Hb 9:13–14; 10:10–14). Portanto, a cessação do sistema sacrificial é o cumprimento do seu propósito pedagógico.</p>
+
+  <div class="citacao">
+    <p>Assim como os sacrifícios prefiguravam e apontavam para Cristo, o dízimo e as ordenanças econômicas serviam a funções práticas e formativas: sustentavam o culto, mantinham festas e assistiam os pobres — uma disciplina comunitária que orientava o coração para dependência de Deus.</p>
+    <span class="citacao-ref">Nm 18:21–24; Dt 14:22–29; Lv 25; Dt 15</span>
+  </div>
+
+  <p>A vinda do Messias reorienta a pedagogia divina. Jesus cumpre o que os sacrifícios prefiguravam (Mt 5:17) e, ao confrontar líderes religiosos que dizimavam minuciosamente ervas enquanto negligenciavam justiça, misericórdia e fé, sublinha que a observância externa só tem sentido quando subordinada ao coração transformado (Mt 23:23; Lc 11:42). Paulo desloca ainda mais a ênfase: "cada um contribua segundo propôs no coração... porque Deus ama quem dá com alegria" (2 Cor 9:7; cf. 2 Cor 8:1–5).</p>
+
+  <p>A Escritura contrapõe amor a Deus e amor ao dinheiro como forças rivais: "Ninguém pode servir a dois senhores... não pode servir a Deus e a Mamom" (Mt 6:24). Paulo adverte que "o amor ao dinheiro é raiz de todos os males" (1 Tm 6:10). Tanto sacrifícios quanto dízimos visavam reordenar os afetos; quando transformados em mera observância externa, tornam-se vazios e podem esconder idolatria.</p>
+
+  <p>Hebreus usa a história do dízimo de Abraão (Gn 14) para discutir o sacerdócio de Melquisedeque e o sacerdócio superior de Cristo (Hb 7:1–10) — tratando o dízimo como elemento tipológico, não como decreto perpétuo. A prática do sustento mútuo permanece mandatória no NT — Atos 2:44–45; 1 Tm 5:17–18 — mas a forma normativa do dar muda: voluntário, proporcional e motivado pelo amor.</p>
+
+  <div class="destaque-biblico">
+    <p>"É teologicamente coerente afirmar que sacrifício e dízimo preexistiam à Lei e serviam como pedagogia para a necessidade de redenção e desapego; o sacrifício cerimonial cessou em Cristo, e o dízimo institucional precisa ser reinterpretado à luz da Nova Aliança."</p>
+    <span class="ref">Hb 9–10; Mt 22:37–40; 2 Cor 9:6–8</span>
+  </div>
+
+  <p>Na vida da igreja, isso implica ensinar o princípio do sustento mútuo e promover doação voluntária e transparente, evitando transformar o dar em instrumento de legalismo ou manipulação — para que o dar brote sempre do amor a Cristo e ao próximo.</p>
+</section>
+
+<div class="divisor"><span class="divisor-glifo">✦</span></div>
+
+<!-- SEÇÃO IX: PASSAGENS -->
+<section class="section" id="passagens" data-nav="9">
+  <div class="badge">Seção IX</div>
+  <h2 class="section-titulo">Passagens para Estudo Aprofundado</h2>
+  <div class="section-linha"></div>
+  <p>As referências abaixo são a espinha dorsal bíblica deste estudo. Clique sobre cada uma para ver o contexto resumido.</p>
+
+  <h3 style="font-family:'Cinzel',serif;font-size:0.9rem;font-weight:600;color:#1a0e00;margin:1.4rem 0 0.7rem;letter-spacing:0.05em;text-transform:uppercase;">Antigo Testamento</h3>
+  <div class="tags-grid">
+    <span class="tag-ref" data-tip="Caim e Abel — primeira oferta registrada na Bíblia. Deus olha para a atitude do coração, não apenas para o ritual." onclick="flashTag(this)">Gn 4 (Caim e Abel)</span>
+    <span class="tag-ref" data-tip="Abraão paga dízimo a Melquisedeque — antes da Lei mosaica. Base para Hebreus 7." onclick="flashTag(this)">Gn 14:18–20</span>
+    <span class="tag-ref" data-tip="Regulamentação do sistema sacrificial no Sinai — holocaustos, ofertas pelo pecado, ofertas de comunhão." onclick="flashTag(this)">Lv (sistema sacrificial)</span>
+    <span class="tag-ref" data-tip="O dízimo sustenta os levitas que não têm herança territorial — função cultual e social." onclick="flashTag(this)">Nm 18:21–24</span>
+    <span class="tag-ref" data-tip="Dízimo das festas — celebração e gozo perante o Senhor. Segundo dízimo anual para festividades." onclick="flashTag(this)">Dt 14:22–27</span>
+    <span class="tag-ref" data-tip="Dízimo a cada três anos — destinado aos pobres, estrangeiros, órfãos e viúvas." onclick="flashTag(this)">Dt 14:28–29</span>
+    <span class="tag-ref" data-tip="Lei do Jubileu — radical redistribuição econômica a cada 50 anos. Pedagogia do desapego." onclick="flashTag(this)">Lv 25 (Jubileu)</span>
+    <span class="tag-ref" data-tip="Ano do perdão das dívidas — a cada sete anos. Instruía confiança em Deus e cuidado mútuo." onclick="flashTag(this)">Dt 15 (Sabático)</span>
+  </div>
+
+  <h3 style="font-family:'Cinzel',serif;font-size:0.9rem;font-weight:600;color:#1a0e00;margin:1.6rem 0 0.7rem;letter-spacing:0.05em;text-transform:uppercase;">Evangelho e Atos</h3>
+  <div class="tags-grid">
+    <span class="tag-ref" data-tip="Jesus não veio abolir a Lei, mas cumpri-la. A Lei encontra sua realização plena em Cristo." onclick="flashTag(this)">Mt 5:17–20</span>
+    <span class="tag-ref" data-tip="Jesus critica fariseus que dizimam ervas mas negligenciam justiça, misericórdia e fé — passagem central do debate." onclick="flashTag(this)">Mt 23:23</span>
+    <span class="tag-ref" data-tip="Ninguém pode servir a dois senhores — Deus e Mamom. Oposição radical entre amor a Deus e amor ao dinheiro." onclick="flashTag(this)">Mt 6:24</span>
+    <span class="tag-ref" data-tip="João chama Jesus de 'Cordeiro de Deus que tira o pecado do mundo' — cumprimento do sistema sacrificial." onclick="flashTag(this)">Jo 1:29</span>
+    <span class="tag-ref" data-tip="Igreja primitiva — comunhão de bens, partilha voluntária, cuidado mútuo sem imposição legal de percentual." onclick="flashTag(this)">At 2:44–45; 4:32–37</span>
+    <span class="tag-ref" data-tip="Lucas apresenta passagem paralela a Mt 23:23 — dízimo de arruda e hortaliças negligenciando o amor de Deus." onclick="flashTag(this)">Lc 11:42</span>
+  </div>
+
+  <h3 style="font-family:'Cinzel',serif;font-size:0.9rem;font-weight:600;color:#1a0e00;margin:1.6rem 0 0.7rem;letter-spacing:0.05em;text-transform:uppercase;">Epístolas Paulinas</h3>
+  <div class="tags-grid">
+    <span class="tag-ref" data-tip="A Lei foi tutora até Cristo; em Cristo somos filhos, não servos. Base para entender o fim da obrigação cerimonial." onclick="flashTag(this)">Gl 3–4</span>
+    <span class="tag-ref" data-tip="Mortos para o pecado e vivos para Deus; a Lei não tem mais domínio sobre quem está em Cristo." onclick="flashTag(this)">Rm 6–8</span>
+    <span class="tag-ref" data-tip="Modelo macedônio de doação — além das posses, por livre vontade, com alegria. O paradigma do NT." onclick="flashTag(this)">2 Cor 8–9</span>
+    <span class="tag-ref" data-tip="'Deus ama quem dá com alegria' — a oferta cristã nasce da graça, não da obrigação legal." onclick="flashTag(this)">2 Cor 9:6–7</span>
+    <span class="tag-ref" data-tip="O amor ao dinheiro é raiz de todos os males — Paulo adverte sobre a periculosidade da ganância." onclick="flashTag(this)">1 Tm 6:10</span>
+    <span class="tag-ref" data-tip="Sustento dos presbíteros/pastores — 'o trabalhador é digno do seu salário'. Princípio do NT para o sustento ministerial." onclick="flashTag(this)">1 Tm 5:17–18</span>
+  </div>
+
+  <h3 style="font-family:'Cinzel',serif;font-size:0.9rem;font-weight:600;color:#1a0e00;margin:1.6rem 0 0.7rem;letter-spacing:0.05em;text-transform:uppercase;">Hebreus — A Chave Tipológica</h3>
+  <div class="tags-grid">
+    <span class="tag-ref" data-tip="Dízimo de Abraão a Melquisedeque — usado tipologicamente para argumentar a superioridade do sacerdócio de Cristo." onclick="flashTag(this)">Hb 7:1–10</span>
+    <span class="tag-ref" data-tip="O sangue de Cristo purifica a consciência — os sacrifícios do AT eram incapazes de aperfeiçoar. Cristo é o sumo sacerdote definitivo." onclick="flashTag(this)">Hb 9:13–14</span>
+    <span class="tag-ref" data-tip="'Uma só oblação pelos pecados para sempre' — o sacrifício de Cristo encerra definitivamente o sistema sacrificial do AT." onclick="flashTag(this)">Hb 10:10–14</span>
+  </div>
+</section>
+
+<!-- RODAPÉ -->
+<footer>
+  <span class="footer-simbolo">✦</span>
+  <div class="footer-nome">Pr. João Alves</div>
+  <div class="footer-local">Vila Velha · Espírito Santo · Brasil</div>
+  <div class="footer-link"><a href="https://www.radiomateus633.com" target="_blank">www.radiomateus633.com</a></div>
+  <p class="footer-nota">O dar cristão não é tributo à lei, mas resposta à graça — que o amor a Cristo seja sempre maior que o amor a Mamom.</p>
+</footer>
+
+<!-- BOTÃO TOPO -->
+<button id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+// Navegação
+function irPara(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const navH = document.getElementById('mainNav').offsetHeight;
+  const top = el.getBoundingClientRect().top + window.scrollY - navH - 16;
+  window.scrollTo({ top, behavior: 'smooth' });
+}
+
+// Progresso e botão topo
+window.addEventListener('scroll', () => {
+  const pct = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+  document.getElementById('progressBar').style.width = pct + '%';
+  document.getElementById('backTop').classList.toggle('visivel', window.scrollY > 400);
+});
+
+// IntersectionObserver
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visivel');
+      // Nav ativo
+      const nav = entry.target.dataset.nav;
+      if (nav) {
+        document.querySelectorAll('.nav-btn[data-nav]').forEach(b => b.classList.remove('ativo'));
+        const activeBtn = document.querySelector(`.nav-btn[data-nav="${nav}"]`);
+        if (activeBtn) activeBtn.classList.add('ativo');
+      }
+      // Passos sequenciais
+      const passos = entry.target.querySelectorAll('.passo');
+      passos.forEach((p, i) => {
+        setTimeout(() => p.classList.add('visivel'), i * 140);
+      });
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.section').forEach(s => obs.observe(s));
+
+// Acordeão
+function toggleAcord(btn) {
+  const item = btn.parentElement;
+  item.classList.toggle('aberto');
+}
+
+// Tooltip
+const tooltip = document.getElementById('tooltip');
+document.querySelectorAll('.tag-ref').forEach(tag => {
+  tag.addEventListener('mouseenter', (e) => {
+    tooltip.textContent = tag.dataset.tip;
+    tooltip.classList.add('visivel');
+    posicionarTooltip(e);
+  });
+  tag.addEventListener('mousemove', posicionarTooltip);
+  tag.addEventListener('mouseleave', () => tooltip.classList.remove('visivel'));
+});
+
+function posicionarTooltip(e) {
+  const w = tooltip.offsetWidth || 280;
+  const h = tooltip.offsetHeight || 80;
+  let x = e.clientX + 14;
+  let y = e.clientY - h - 10;
+  if (x + w > window.innerWidth - 10) x = e.clientX - w - 14;
+  if (y < 10) y = e.clientY + 20;
+  tooltip.style.left = x + 'px';
+  tooltip.style.top = y + 'px';
+}
+
+// Flash de tag
+function flashTag(el) {
+  el.classList.add('flash');
+  setTimeout(() => el.classList.remove('flash'), 600);
+}
+</script>
+</body>
+</html>
